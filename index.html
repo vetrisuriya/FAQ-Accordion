@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+    <title>Frontend Mentor | FAQ Accordion Card</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+        :root {
+            --primary_text-very-dark-desaturated-blue: hsl(238, 29%, 16%);
+            --primary_text-soft-red: hsl(14, 88%, 65%);
+            --primary_bg-soft-violet: hsl(273, 75%, 66%);
+            --primary_bg-soft-blue: hsl(240, 73%, 65%);
+            --neutral_text-very-dark-grayish-blue: hsl(237, 12%, 33%);
+            --neutral_text-dark-grayish-blue: hsl(240, 6%, 50%);
+            --dividers_light-grayish-blue: hsl(240, 5%, 91%);
+        }
+        body {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 12px;
+            width: 100%;
+            height: 100vh;
+        }
+        section {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary_bg-soft-violet), var(--primary_bg-soft-blue));
+            position: relative;
+        }
+        .faq {width: 50%;min-height: 440px;height: auto;background: white;border-radius: 10px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);display: flex;flex-direction: row;align-items: center;}
+
+        .faq .faq-left-desktop {width: 50%;height: 440px;display: none;}
+        .faq .faq-left-desktop > img {
+            position: absolute;
+            top: 32%;
+            left: -18%;
+            width: 30%;
+        }
+        .faq .faq-left-desktop .faq-left-image-desktop {width: 100%;height: 100%;position: relative;overflow: hidden;}
+        .faq .faq-left-desktop .faq-left-image-desktop img:nth-of-type(1) {
+            position: absolute;
+            top: 50%;
+            left: -14%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+        .faq .faq-left-desktop .faq-left-image-desktop::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: url(./images/bg-pattern-desktop.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform: scale(2);
+            position: absolute;
+            top: -53px;
+            left: -280px;
+            z-index: -1;
+        }
+
+        .faq .faq-left-mobile {width: 85%;height: 140px;}
+        .faq .faq-left-mobile > img {
+            position: absolute;
+            top: 32%;
+            left: -18%;
+            width: 30%;
+        }
+        .faq .faq-left-mobile .faq-left-image-mobile {width: 100%;height: 100%;position: relative;}
+        .faq .faq-left-mobile .faq-left-image-mobile img:nth-of-type(1) {
+            position: absolute;
+            top: -6%;
+            left: 44%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .faq .faq-left-mobile .faq-left-image-mobile::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: url(./images/bg-pattern-mobile.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform: scale(.9);
+            position: absolute;
+            top: -15px;
+            left: 0px;
+        }
+
+        .faq .faq-right {width: 50%;
+            height: 100%;
+            padding: 50px 60px 50px 0px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .faq .faq-right .faq-title {font-size: 18px;font-weight: 700;margin-bottom: 25px;}
+        .faq .faq-right .faq-body {position: relative;}
+        .faq .faq-right .faq-body ::marker {content: "";}
+        .faq .faq-right .faq-body details {border-bottom: 1px;border-bottom-style: solid;border-bottom-color: var(--dividers_light-grayish-blue);margin-bottom: 20px;cursor: pointer;}
+        .faq .faq-right .faq-body details:not([open]) {padding-bottom: 15px;}
+        .faq .faq-right .faq-body details:not([open]) summary:hover {color: var(--primary_text-soft-red);}
+        .faq .faq-right .faq-body details summary {color: var(--neutral_text-very-dark-grayish-blue);font-weight: 700;display: block;position: relative;}
+        .faq .faq-right .faq-body details summary::after {content: "";position: absolute;right: 0;background: url(./images/icon-arrow-down.svg);width: 10px;height: 10px;background-repeat: no-repeat;background-size: contain;background-position: center;transform: rotate(0deg);}
+        .faq .faq-right .faq-body details[open] summary::after {transform: rotate(180deg);}
+        .faq .faq-right .faq-body details p {color: var(--neutral_text-dark-grayish-blue);line-height: 18px;padding-right: 25px;font-weight: 400;font-size: 11px;}
+
+        
+        @media (min-width: 375px) {
+            .faq .faq-left-desktop {
+                display: block;
+            }
+            .faq .faq-left-mobile {
+                display: none;
+            }
+        }
+        @media (max-width: 375px) {
+            body {
+                height: auto;
+            }
+            section {
+                padding: 160px 0px 80px;
+            }
+            .faq {
+                width: 90%;
+                height: auto;
+                margin: 0px auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: unset;
+                top: unset;
+                left: unset;
+                transform: unset;
+            }
+            .faq .faq-right {
+                width: 100%;
+                padding: 25px;
+                align-items: center;
+            }
+            .faq .faq-right .faq-title {
+                margin-bottom: 35px;
+            }
+            .faq .faq-right .faq-body {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <div class="faq">
+            <div class="faq-left-desktop">
+                <div class="faq-left-image-desktop">
+                    <img src="./images/illustration-woman-online-desktop.svg" alt="illustration-woman-online-desktop">
+                </div>
+                <img src="./images/illustration-box-desktop.svg" alt="illustration-box-desktop">
+            </div>
+            <div class="faq-left-mobile">
+                <div class="faq-left-image-mobile">
+                    <img src="./images/illustration-woman-online-mobile.svg" alt="illustration-woman-online-mobile">
+                </div>
+            </div>
+            <div class="faq-right">
+                <div class="faq-title">FAQ</div>
+                <div class="faq-body">
+                    <details>
+                        <summary>How many team members can I invite?</summary>
+                        <p>You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.</p>
+                    </details>
+                    <details>
+                        <summary>What is the maximum file upload size?</summary>
+                        <p>No more than 2GB. All files in your account must fit your allotted storage space.</p>
+                    </details>
+                    <details>
+                        <summary>How do I reset my password?</summary>
+                        <p>Click “Forgot password” from the login page or “Change password” from your profile page. A reset link will be emailed to you.</p>
+                    </details>
+                    <details>
+                        <summary>Can I cancel my subscription?</summary>
+                        <p>Yes! Send us a message and we’ll process your request no questions asked.</p>
+                    </details>
+                    <details>
+                        <summary>Do you provide additional support?</summary>
+                        <p>Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
